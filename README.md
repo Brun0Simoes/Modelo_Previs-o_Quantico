@@ -15,20 +15,19 @@ Objetivo pratico: gerar previsoes de temperatura e chuva para as proximas 24h co
 
 ## Escopo Implementado
 
-1. Projeto criado e mantido no drive `E:` (`E:\PrevisaoTempoNASA_Quantum_BR`), evitando armazenamento em `C:`.
-2. Validacao de dependencias e ambiente Docker (`scripts/bootstrap.ps1` e `scripts/check_dependencies.ps1`).
-3. Download e preparacao de dados MERRA-2 para o formato exigido pelo Prithvi-WxC.
-4. Treino adaptativo com deteccao de memoria (`mode=auto`) para alternar entre `prithvi` e `persistence`.
-5. Fine tuning com busca de hiperparametros, validacao temporal, early stopping e resume de treino.
-6. Treino separado por escopo:
+1. Validacao de dependencias e ambiente Docker (`scripts/bootstrap.ps1` e `scripts/check_dependencies.ps1`).
+2. Download e preparacao de dados MERRA-2 para o formato exigido pelo Prithvi-WxC.
+3. Treino adaptativo com deteccao de memoria (`mode=auto`) para alternar entre `prithvi` e `persistence`.
+4. Fine tuning com busca de hiperparametros, validacao temporal, early stopping e resume de treino.
+5. Treino separado por escopo:
    - estado (27 UFs)
    - municipio (amostragem configuravel; em producao, 900 cidades)
-7. Dashboards web:
+6. Dashboards web:
    - painel principal operacional em mapa
    - previsao 24h por regiao e por cidade
    - snap por cidade e data (00:00 a 23:00)
    - comparativo previsto x real hora a hora por data/regiao
-8. Endpoints para consumo programatico e governanca de modelos (`/api/model/status`, `/api/forecast/*`).
+7. Endpoints para consumo programatico e governanca de modelos (`/api/model/status`, `/api/forecast/*`).
 
 ## Arquitetura do Sistema
 
