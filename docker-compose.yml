@@ -1,0 +1,39 @@
+﻿services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - PYTHONPATH=/workspace/src
+      - PROJECT_ROOT=/workspace
+      - DATA_ROOT=/workspace/data
+      - MODEL_CACHE_DIR=/workspace/cache/huggingface
+      - HF_HOME=/workspace/cache/huggingface
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/workspace
+      - E:/PrevisaoTempoNASA_Quantum_BR/data:/workspace/data
+      - E:/PrevisaoTempoNASA_Quantum_BR/cache:/workspace/cache
+    command: uvicorn previsao_tempo_quantico.api.main:app --host 0.0.0.0 --port 8000 --reload
+
+  trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - PYTHONPATH=/workspace/src
+      - PROJECT_ROOT=/workspace
+      - DATA_ROOT=/workspace/data
+      - MODEL_CACHE_DIR=/workspace/cache/huggingface
+      - HF_HOME=/workspace/cache/huggingface
+    volumes:
+      - ./:/workspace
+      - E:/PrevisaoTempoNASA_Quantum_BR/data:/workspace/data
+      - E:/PrevisaoTempoNASA_Quantum_BR/cache:/workspace/cache
+    gpus: all
+    command: python scripts/train_quantum.py --config configs/train.yaml

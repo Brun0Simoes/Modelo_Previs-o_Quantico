@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nimbus Snap | Cidade e Data</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Barlow:wght@400;500;700&display=swap"
+    />
+    <link rel="stylesheet" href="/static/snap.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="title-wrap">
+        <h1>Nimbus Snap | Cidade e Data</h1>
+        <p>Selecione cidade e data para consultar previsao horaria completa de 00:00 a 23:00.</p>
+      </div>
+      <div class="head-stats">
+        <div class="head-card">
+          <span>Cidade selecionada</span>
+          <strong id="cityMeta">-</strong>
+        </div>
+        <div class="head-card">
+          <span>Data do snap</span>
+          <strong id="dateMeta">-</strong>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel controls">
+        <h2>Selecao do Snap</h2>
+
+        <label for="uf">UF</label>
+        <input id="uf" maxlength="2" placeholder="ex: SP" value="SP" />
+
+        <button id="loadCitiesBtn" class="secondary">Carregar cidades</button>
+
+        <label for="citySelect">Cidade</label>
+        <select id="citySelect"></select>
+
+        <label for="snapDate">Data</label>
+        <input id="snapDate" type="date" />
+
+        <button id="searchBtn">Buscar snap</button>
+
+        <div class="info" id="statusText">Aguardando selecao de cidade.</div>
+      </aside>
+
+      <section class="map-panel">
+        <div id="map"></div>
+      </section>
+
+      <aside class="panel right">
+        <section class="block">
+          <h2>Resumo</h2>
+          <div id="summaryBox" class="summary-box">Sem dados.</div>
+        </section>
+
+        <section class="block">
+          <h2>Hora a Hora</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hora</th>
+                  <th>Temp (C)</th>
+                  <th>Chuva (%)</th>
+                  <th>Chuva (mm/h)</th>
+                  <th>Condicao</th>
+                </tr>
+              </thead>
+              <tbody id="snapRows"></tbody>
+            </table>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/static/snap.js"></script>
+  </body>
+</html>

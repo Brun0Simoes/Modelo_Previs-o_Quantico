@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nimbus Brasil | Painel de Operacao</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Barlow:wght@400;500;700&display=swap"
+    />
+    <style>
+      :root {
+        --bg-top: #061a31;
+        --bg-bottom: #02070e;
+        --card: #f0f5fb;
+        --line: #c6d4e3;
+        --ink: #102a44;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Barlow", "Segoe UI", sans-serif;
+        background: radial-gradient(circle at 10% 10%, #15497a 0%, var(--bg-top) 45%, var(--bg-bottom) 100%);
+        color: #eaf3fd;
+        display: grid;
+        place-items: center;
+        padding: 20px;
+      }
+      .wrap {
+        width: min(960px, 100%);
+      }
+      h1 {
+        margin: 0 0 6px;
+        font-family: "Sora", "Barlow", sans-serif;
+        font-size: 2rem;
+        letter-spacing: 0.02em;
+      }
+      .subtitle {
+        margin: 0 0 18px;
+        color: #bbd0e7;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(240px, 1fr));
+        gap: 14px;
+      }
+      .card {
+        background: var(--card);
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px;
+        text-decoration: none;
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+      }
+      .card h2 {
+        margin: 0 0 8px;
+        font-family: "Sora", "Barlow", sans-serif;
+        font-size: 1.2rem;
+      }
+      .card p {
+        margin: 0;
+        color: #35526e;
+      }
+      @media (max-width: 840px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>Nimbus Brasil</h1>
+      <p class="subtitle">Escolha o painel de previsao que deseja operar.</p>
+      <section class="grid">
+        <a class="card" href="/dashboard/hourly">
+          <h2>24h Hora a Hora</h2>
+          <p>Painel separado para temperatura e probabilidade de chuva por hora nas proximas 24h.</p>
+        </a>
+        <a class="card" href="/dashboard/snap">
+          <h2>Snap por Cidade e Data</h2>
+          <p>Selecione cidade e data para consultar a previsao detalhada daquela janela horaria.</p>
+        </a>
+        <a class="card" href="/dashboard/compare">
+          <h2>Comparativo Previsto x Real</h2>
+          <p>Selecione data e regiao para comparar 24h hora a hora entre previsao do modelo e observado.</p>
+        </a>
+      </section>
+    </main>
+  </body>
+</html>

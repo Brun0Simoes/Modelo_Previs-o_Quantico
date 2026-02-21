@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nimbus 24h | Hora a Hora</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Barlow:wght@400;500;700&display=swap"
+    />
+    <link rel="stylesheet" href="/static/hourly.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="title-wrap">
+        <h1>Nimbus 24h | Hora a Hora</h1>
+        <p>Previsao de temperatura e probabilidade de chuva em janela diaria de 00:00 a 23:00.</p>
+      </div>
+      <div class="head-stats">
+        <div class="head-card">
+          <span>Base da previsao</span>
+          <strong id="sourceTime">-</strong>
+        </div>
+        <div class="head-card">
+          <span>Cidades no painel</span>
+          <strong id="cityCount">-</strong>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel controls">
+        <h2>Filtros</h2>
+
+        <label for="uf">UF (opcional)</label>
+        <input id="uf" maxlength="2" placeholder="ex: SP" />
+
+        <label for="cityLimit">Quantidade de cidades</label>
+        <input id="cityLimit" type="number" min="100" max="5570" step="100" value="1200" />
+
+        <label for="cityQuery">Filtrar cidade</label>
+        <input id="cityQuery" placeholder="ex: Cachoeira Paulista" />
+
+        <label for="metric">Camada no mapa</label>
+        <select id="metric">
+          <option value="temperature">Temperatura (C)</option>
+          <option value="rain">Prob. de chuva (%)</option>
+        </select>
+
+        <div class="horizon-group">
+          <label for="hourRange">Hora da previsao</label>
+          <input id="hourRange" type="range" min="0" max="23" step="1" value="0" />
+          <div class="hour-label" id="hourValue">00:00</div>
+        </div>
+
+        <button id="refreshBtn">Atualizar painel</button>
+
+        <div class="legend">
+          <h3>Escala</h3>
+          <p><span class="swatch low"></span> baixo</p>
+          <p><span class="swatch mid"></span> medio</p>
+          <p><span class="swatch high"></span> alto</p>
+        </div>
+
+        <div class="info" id="statusText">Aguardando...</div>
+      </aside>
+
+      <section class="map-panel">
+        <div id="map"></div>
+      </section>
+
+      <aside class="panel right">
+        <section class="block">
+          <h2>Resumo por Regiao</h2>
+          <div id="regionCards" class="region-cards"></div>
+        </section>
+
+        <section class="block">
+          <h2>Ranking de Cidades (hora selecionada)</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Cidade</th>
+                  <th>UF</th>
+                  <th>Temp (C)</th>
+                  <th>Chuva (%)</th>
+                  <th>Condicao</th>
+                </tr>
+              </thead>
+              <tbody id="cityRows"></tbody>
+            </table>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/static/hourly.js"></script>
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nimbus Compare | Previsto x Real 24h</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Barlow:wght@400;500;700&display=swap"
+    />
+    <link rel="stylesheet" href="/static/compare.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="title-wrap">
+        <h1>Nimbus Compare | Previsto x Real</h1>
+        <p>Comparacao operacional de 24h (00:00-23:00) por data e regiao.</p>
+      </div>
+      <div class="head-stats">
+        <div class="head-card">
+          <span>Base previsao</span>
+          <strong id="sourceTime">-</strong>
+        </div>
+        <div class="head-card">
+          <span>Base observada</span>
+          <strong id="observedTime">-</strong>
+        </div>
+        <div class="head-card">
+          <span>Cobertura</span>
+          <strong id="coverageTop">-</strong>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel controls">
+        <h2>Filtros</h2>
+
+        <label for="scopeSelect">Escopo</label>
+        <select id="scopeSelect">
+          <option value="state">Estados</option>
+          <option value="municipio">Municipios</option>
+        </select>
+
+        <label for="ufInput">UF (municipios)</label>
+        <input id="ufInput" maxlength="2" placeholder="ex: SP" />
+
+        <label for="municipalityLimit">Qtd. municipios no filtro</label>
+        <input id="municipalityLimit" type="number" min="50" max="5570" step="50" value="1200" />
+
+        <label for="regionSelect">Regiao</label>
+        <select id="regionSelect"></select>
+
+        <label for="compareDate">Data</label>
+        <input id="compareDate" type="date" />
+
+        <div class="btn-group">
+          <button id="refreshFiltersBtn" class="secondary">Atualizar filtros</button>
+          <button id="compareBtn">Comparar 24h</button>
+        </div>
+
+        <div class="info" id="statusText">Carregando metadados...</div>
+      </aside>
+
+      <section class="map-panel">
+        <div id="map"></div>
+      </section>
+
+      <aside class="panel right">
+        <section class="block">
+          <h2>Metricas</h2>
+          <div class="metric-grid">
+            <article class="metric-card">
+              <span>Temp RMSE</span>
+              <strong id="tempRmse">-</strong>
+            </article>
+            <article class="metric-card">
+              <span>Temp MAE</span>
+              <strong id="tempMae">-</strong>
+            </article>
+            <article class="metric-card">
+              <span>Chuva% RMSE</span>
+              <strong id="rainRmse">-</strong>
+            </article>
+            <article class="metric-card">
+              <span>Chuva% MAE</span>
+              <strong id="rainMae">-</strong>
+            </article>
+          </div>
+          <div class="region-meta" id="regionMeta">Sem comparacao executada.</div>
+        </section>
+
+        <section class="block">
+          <h2>Tabela Hora a Hora</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hora</th>
+                  <th>T Prev</th>
+                  <th>T Real</th>
+                  <th>Erro T</th>
+                  <th>P Prev</th>
+                  <th>P Real</th>
+                  <th>Erro P</th>
+                  <th>Cond Prev</th>
+                  <th>Cond Real</th>
+                </tr>
+              </thead>
+              <tbody id="compareRows"></tbody>
+            </table>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/static/compare.js"></script>
+  </body>
+</html>
